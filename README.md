@@ -1,4 +1,4 @@
-# societal-risk-eval
+# LLM Risk Evaluation Pipeline
 
 A containerised evaluation pipeline that systematically probes a local LLM across societal risk categories, scores responses with a judge LLM, logs structured results, and generates a findings report.
 
