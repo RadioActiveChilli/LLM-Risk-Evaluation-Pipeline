@@ -12,12 +12,6 @@ infra/terraform.tfstate
 infra/terraform.tfstate.backup
 infra/.terraform.lock.hcl
 
-# Internal planning docs
-projectBrief.md
-projectPlan.md
-projectTimeline.md
-projectTesting.md
-
 # Eval outputs — not committed; findings summarised in README
 data/results.jsonl
 data/human-review.json
