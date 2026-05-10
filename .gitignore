@@ -18,5 +18,9 @@ projectPlan.md
 projectTimeline.md
 projectTesting.md
 
+# Eval outputs — not committed; findings summarised in README
+data/results.jsonl
+data/human-review.json
+
 # Legacy report location
 report.md
