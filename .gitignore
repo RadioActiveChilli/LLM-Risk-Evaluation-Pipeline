@@ -1,0 +1,22 @@
+# Environment — never commit credentials or local paths
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Terraform state
+infra/.terraform/
+infra/terraform.tfstate
+infra/terraform.tfstate.backup
+infra/.terraform.lock.hcl
+
+# Internal planning docs
+projectBrief.md
+projectPlan.md
+projectTimeline.md
+projectTesting.md
+
+# Legacy report location
+report.md

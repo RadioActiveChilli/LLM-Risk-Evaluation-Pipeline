@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  eval-runner:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: eval-runner
+    env_file:
+      - ../.env
+    volumes:
+      - ../data:/app/data
+      # Mount the host models directory at the same absolute path so that
+      # SUBJECT_MODEL_PATH / JUDGE_MODEL_PATH from .env resolve inside the container.
+      # Adjust the left-hand side if your GGUF files live elsewhere.
+      - ${SUBJECT_MODEL_PATH%/*}:${SUBJECT_MODEL_PATH%/*}:ro
+    networks:
+      - eval-net
+    restart: "no"
+
+networks:
+  eval-net:
+    driver: bridge
