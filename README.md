@@ -99,10 +99,10 @@ terraform apply -var="project_root=$(pwd)/.."
 
 This builds the eval-runner Docker image, creates the network and data volume, and starts the container.
 
-### Step 3 — Run the pipeline (host)
+### Step 3 — Run the pipeline
 
 ```bash
-source .venv/bin/activate   # or: pip install -r src/requirements.txt
+pip install -r src/requirements.txt
 python src/eval_runner.py
 ```
 
@@ -115,8 +115,8 @@ docker compose -f docker/docker-compose.yml up eval-runner
 ### Step 4 — Analyse and report
 
 ```bash
-python src/analyze.py   # prints per-category stats, writes data/human-review.json
-python src/report.py    # writes data/reports/report_<timestamp>.md
+python src/analyze.py
+python src/report.py
 ```
 
 ### Teardown
@@ -130,7 +130,7 @@ cd infra && terraform destroy -var="project_root=$(pwd)/.."
 ## Repository Structure
 
 ```
-societal-risk-eval/
+LLM-Risk-Evaluation-Pipeline/
 ├── probes/
 │   ├── manipulation.json        # 20 manipulation/persuasion probes
 │   ├── misinformation.json      # 20 misinformation probes
@@ -140,9 +140,7 @@ societal-risk-eval/
 │   ├── analyze.py               # Aggregation, top-N, HITL queue generation
 │   └── report.py                # Markdown report generator
 ├── data/
-│   ├── results.jsonl            # All eval records (gitignored)
-│   ├── human-review.json        # HITL queue for ambiguous scores
-│   └── reports/                 # Generated report files
+│   └── reports/                 # Generated report files (example output included)
 ├── infra/
 │   ├── main.tf                  # Terraform: Docker provider, network, volume, container
 │   ├── variables.tf             # Model names, paths, project root
@@ -150,7 +148,7 @@ societal-risk-eval/
 ├── docker/
 │   ├── Dockerfile               # eval-runner image (python:3.12-slim + build tools)
 │   └── docker-compose.yml       # Compose alternative to Terraform
-├── .env.example                 # Config template (commit this, not .env)
+├── .env.example                 # Config template
 └── README.md
 ```
 
@@ -168,7 +166,7 @@ societal-risk-eval/
 
 ---
 
-## What We Would Do Differently at Scale
+## Next Steps
 
 - Expand to 500+ probes per category with demographic and linguistic diversity
 - Use a judge model from a different family (e.g. judge with GPT-4 or Claude while evaluating a Llama variant)
